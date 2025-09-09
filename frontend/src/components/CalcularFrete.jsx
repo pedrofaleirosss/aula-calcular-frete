@@ -1,18 +1,21 @@
 import { useState } from "react";
 
 function CalcularFrete() {
+  // Hook - useState manipula o estado da variável
   const [distancia, setDistancia] = useState("");
   const [tipoTransporte, setTipoTransporte] = useState("bicicleta");
   const [valorFrete, setValorFrete] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Criando a função handleSubmit
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Não deixa a página recarregar
     setLoading(true);
     setValorFrete(null);
     setError(null);
 
+    // Tratamento de erros
     try {
       const response = await fetch("http://localhost:5001/calcularfrete", {
         method: "POST",
